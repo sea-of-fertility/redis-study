@@ -51,10 +51,20 @@ class RedisServiceTest {
                 .build();
 
         redisService.save(myName);
-        Thread.sleep(5000L);
+        Thread.sleep(2000L);
+
+        Hello myName2 = Hello.builder()
+                .id("12")
+                .name("myName")
+                .value("100")
+                .build();
+        redisService.save(myName2);
         //then
         Optional<Hello> byId = helloRepository.findById("11");
+        Optional<Hello> byId2 = helloRepository.findById("12");
         Assertions.assertThat(byId.isPresent()).isEqualTo(false);
+
+        Assertions.assertThat(byId2.isPresent()).isEqualTo(true);
     }
 
 }
