@@ -19,10 +19,27 @@ class RedisServiceTest {
     @Autowired
     HelloRepository helloRepository;
 
-//    @BeforeEach
-//    void setRedisRepository() {
-//        helloRepository.deleteAll();
-//    }
+    @BeforeEach
+    void setRedisRepository() {
+        helloRepository.deleteAll();
+    }
+
+    @Test
+    void save() throws Exception {
+        //given
+        Hello myName = Hello.builder()
+                .id("11")
+                .name("myName")
+                .value("100")
+                .build();
+
+        //when
+        redisService.save(myName);
+
+        //then
+        Assertions.assertThat(helloRepository.findById("11")).isPresent();
+    }
+
 
     @Test
     void test1() throws Exception {
@@ -34,10 +51,10 @@ class RedisServiceTest {
                 .build();
 
         redisService.save(myName);
-        Thread.sleep(1000L);
+        Thread.sleep(5000L);
         //then
         Optional<Hello> byId = helloRepository.findById("11");
-//        Assertions.assertThat(byId.isPresent()).isEqualTo(false);
+        Assertions.assertThat(byId.isPresent()).isEqualTo(false);
     }
 
 }

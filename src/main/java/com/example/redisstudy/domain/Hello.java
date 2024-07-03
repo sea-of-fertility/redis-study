@@ -7,10 +7,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.redis.core.RedisHash;
-import org.springframework.data.redis.core.TimeToLive;
 
 @Getter
-@RedisHash
+@RedisHash(timeToLive = 1L)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Hello {
 
@@ -18,6 +17,8 @@ public class Hello {
     private String id;
 
     private String name;
+
+
 
     @Builder
     public Hello(String id, String name, String value) {
@@ -28,7 +29,5 @@ public class Hello {
 
     private String value;
 
-    @TimeToLive
-    public Long expired = 15L;
 
 }

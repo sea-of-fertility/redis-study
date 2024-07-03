@@ -1,0 +1,9 @@
+spring:
+  application:
+  name: redis-study
+
+data:
+  redis:
+    password: 0000
+    host: localhost
+    port: 6379
