@@ -11,6 +11,14 @@ accessToken를 redis로 구현할 정도의 기능을 학습한다.
 3. @TimeToLive annotation on a property 
 4. @TimeToLive annotation on a method:
 
+# 적용
+[Hello](src/main/java/com/example/redisstudy/domain/Hello.java) TTL을 1초로 적용했다.
+~~~ java
+   @TimeToLive
+    public long getTimeToLive() {
+        return 1L;
+    }
+~~~
 
 # 학습 자료 링크
 + [Spring Data Redis](https://docs.spring.io/spring-data/redis/reference/index.html)
