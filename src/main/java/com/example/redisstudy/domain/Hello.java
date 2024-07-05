@@ -8,18 +8,22 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.redis.core.RedisHash;
 import org.springframework.data.redis.core.TimeToLive;
+import org.springframework.data.redis.core.index.Indexed;
 
 @Getter
-@RedisHash
+@RedisHash("people")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Hello {
 
     @Id
     private String id;
 
+    @Indexed
     private String name;
+
     private String value;
 
+    private Address address;
 
     @TimeToLive
     public long getTimeToLive() {
@@ -27,9 +31,9 @@ public class Hello {
     }
 
     @Builder
-    public Hello(String id, String name, String value) {
-        this.id = id;
+    public Hello(String name, String value, String city) {
         this.name = name;
         this.value = value;
+        this.address = new Address(city);
     }
 }

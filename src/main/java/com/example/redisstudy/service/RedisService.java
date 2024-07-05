@@ -24,5 +24,8 @@ public class RedisService {
     public void save(Hello hello) {
        helloRepository.save(hello);
     }
+    public boolean exists(Hello hello) {
+        return helloRepository.existsById(hello.getId());
+    }
 
 }
